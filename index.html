@@ -180,50 +180,56 @@ const STOPS = [
   {b:'b12', badge:5, emoji:'📸', name:'Polyterrasse (ETH)', time:'12–1 PM · view', ll:[47.3765,8.5478], photo:'polyterrasse',
    desc:'The ETH terrace at the top of the Polybahn — unbeatable views over the Old Town and Lake Zürich. Then head back down.',
    addr:'Polyterrasse, 8006 Zürich'},
-  {b:'b12', badge:6, emoji:'🥐', name:'Babu’s Bakery & Coffeehouse', time:'12–1 PM', ll:[47.3762,8.5378], photo:'babus',
-   desc:'Tucked off a side street and famous for its brunch — a great stop before you hit Bahnhofstrasse.',
-   addr:'Löwenstrasse 1, 8001 Zürich'},
-  {b:'b12', badge:7, emoji:'🛍️', name:'Bahnhofstrasse', time:'12–1 PM', ll:[47.3728,8.5388],
+  {b:'b12', badge:6, emoji:'🛍️', name:'Bahnhofstrasse', time:'12–1 PM', ll:[47.3728,8.5388],
    desc:'Head back over the bridge and stroll down Zurich’s famous shopping boulevard.',
    addr:'Bahnhofstrasse, 8001 Zürich'},
 
   /* ---- 1–3 PM · green ---- */
-  {b:'b13', badge:8, emoji:'🌳', name:'Lindenhof', time:'1–3 PM · view', ll:[47.3731,8.5411], photo:'lindenhof',
+  {b:'b13', badge:7, emoji:'🌳', name:'Lindenhof', time:'1–3 PM · view', ll:[47.3731,8.5411], photo:'lindenhof',
    desc:'After some shopping, walk up Lindenhof hill for a panorama of the Old Town, the Limmat river and the towers.',
    addr:'Lindenhof, 8001 Zürich'},
-  {b:'b13', badge:9, emoji:'🕰️', name:'St. Peter Church', time:'1–3 PM', ll:[47.3702,8.5406],
+  {b:'b13', badge:8, emoji:'🏘️', name:'Rennweg', time:'1–3 PM', ll:[47.3727,8.5403],
+   desc:'One of the Old Town’s oldest lanes — a charming shopping street just below Lindenhof.',
+   addr:'Rennweg, 8001 Zürich'},
+  {b:'b13', badge:9, emoji:'🎨', name:'Augustinergasse', time:'1–3 PM', ll:[47.3719,8.5402],
+   desc:'A famous, picture-perfect lane lined with colourful houses and painted oriel windows.',
+   addr:'Augustinergasse, 8001 Zürich'},
+  {b:'b13', badge:10, emoji:'🕰️', name:'St. Peter Church', time:'1–3 PM', ll:[47.3702,8.5406],
    desc:'Walk down to St. Peter — its clock face is the largest in Europe.',
    addr:'St. Peterhofstatt, 8001 Zürich'},
-  {b:'b13', badge:10, emoji:'🍽️', name:'Zeughauskeller', time:'1–3 PM · if hungry', ll:[47.3701,8.5397],
+  {b:'b13', badge:11, emoji:'🍽️', name:'Zeughauskeller', time:'1–3 PM · if hungry', ll:[47.3701,8.5397],
    desc:'Hungry? Stop here for a hearty, famous Swiss meal in a historic former armoury.',
    addr:'Bahnhofstrasse 28a, 8001 Zürich'},
-  {b:'b13', badge:11, emoji:'🍫', name:'Confiserie Sprüngli · Paradeplatz', time:'1–3 PM', ll:[47.3698,8.5391], photo:'sprungli',
+  {b:'b13', badge:12, emoji:'🍫', name:'Confiserie Sprüngli · Paradeplatz', time:'1–3 PM', ll:[47.3698,8.5391], photo:'sprungli',
    desc:'The famous Sprüngli at Paradeplatz — Swiss chocolates, truffles and Luxemburgerli macarons (pictured).',
    addr:'Paradeplatz, 8001 Zürich'},
-  {b:'b13', badge:12, emoji:'⛪', name:'Fraumünster', time:'1–3 PM', ll:[47.3698,8.5411], photo:'fraumunster',
-   desc:'Head to Fraumünster (passing the Münsterhof fountain and Stadthaus next door), then out to the Münsterbrücke for a photo.',
+  {b:'b13', badge:13, emoji:'⛪', name:'Fraumünster', time:'1–3 PM', ll:[47.3698,8.5411], photo:'fraumunster',
+   desc:'Head to Fraumünster (passing the Münsterhof fountain), famed for its Chagall stained-glass windows.',
    addr:'Münsterhof 2, 8001 Zürich'},
+  {b:'b13', badge:14, emoji:'🏛️', name:'Stadthaus', time:'1–3 PM', ll:[47.3694,8.5414],
+   desc:'The elegant city administration building right on the river, next door to Fraumünster.',
+   addr:'Stadthausquai 17, 8001 Zürich'},
 
   /* ---- 3–4 PM · blue ---- */
-  {b:'b15', badge:13, emoji:'🥐', name:'John Baker', time:'Before 3 PM', ll:[47.3706,8.5379],
+  {b:'b15', badge:15, emoji:'🥐', name:'John Baker', time:'Before 3 PM', ll:[47.3706,8.5379],
    desc:'A beloved local cafe & bakery — grab a coffee and a pastry for a pick-me-up.',
    addr:'Near Bahnhofstrasse, 8001 Zürich'},
-  {b:'b15', badge:14, emoji:'🏦', name:'Swiss National Bank', time:'~3 PM · photo', ll:[47.3696,8.5386],
+  {b:'b15', badge:16, emoji:'🏦', name:'Swiss National Bank', time:'~3 PM · photo', ll:[47.3696,8.5386],
    desc:'Snap a photo of the imposing SNB, then walk across the Quaibrücke bridge.',
    addr:'Börsenstrasse 15, 8001 Zürich'},
-  {b:'b15', badge:15, emoji:'🌉', name:'Quaibrücke', time:'~3 PM', ll:[47.3663,8.5423],
+  {b:'b15', badge:17, emoji:'🌉', name:'Quaibrücke', time:'~3 PM', ll:[47.3663,8.5423],
    desc:'Cross where the lake meets the Limmat river — lovely views in both directions.',
    addr:'Quaibrücke, 8001 Zürich'},
-  {b:'b15', badge:16, emoji:'🌭', name:'Sternen Grill', time:'Snack', ll:[47.3660,8.5455],
+  {b:'b15', badge:18, emoji:'🌭', name:'Sternen Grill', time:'Snack', ll:[47.3660,8.5455],
    desc:'A Zurich institution across the bridge — the famous bratwurst with spicy mustard.',
    addr:'Theaterstrasse 22, 8001 Zürich (Bellevue)'},
-  {b:'b15', badge:17, emoji:'🎭', name:'Opernhaus Zürich', time:'~3:30 PM', ll:[47.3655,8.5464], photo:'opera',
+  {b:'b15', badge:19, emoji:'🎭', name:'Opernhaus Zürich', time:'~3:30 PM', ll:[47.3655,8.5464], photo:'opera',
    desc:'The grand opera house on Sechseläutenplatz.',
    addr:'Falkenstrasse 1, 8008 Zürich'},
-  {b:'b15', badge:18, emoji:'🦢', name:'Sechseläutenplatz', time:'~3:30 PM', ll:[47.3661,8.5453],
+  {b:'b15', badge:20, emoji:'🦢', name:'Sechseläutenplatz', time:'~3:30 PM', ll:[47.3661,8.5453],
    desc:'A big open lakeside square — look out for the swans!',
    addr:'Sechseläutenplatz, 8001 Zürich'},
-  {b:'b15', badge:19, emoji:'⛪', name:'Wasserkirche', time:'~4 PM', ll:[47.3702,8.5432], photo:'wasserkirche',
+  {b:'b15', badge:21, emoji:'⛪', name:'Wasserkirche', time:'~4 PM', ll:[47.3702,8.5432], photo:'wasserkirche',
    desc:'Riverside church — from here you get the classic view facing Fraumünster and the Rathaus.',
    addr:'Limmatquai 31, 8001 Zürich'},
 
@@ -233,25 +239,28 @@ const STOPS = [
   {b:'balt', badge:'B', emoji:'🏛️', name:'Rathaus (Town Hall)', time:'4:30 PM · alt', ll:[47.3714,8.5427],
    desc:'Zurich’s Renaissance town hall, sitting right on the river.',
    addr:'Limmatquai 55, 8001 Zürich'},
-  {b:'balt', badge:'C', emoji:'🖼️', name:'Kunsthaus Zürich', time:'5 PM · alt', ll:[47.3703,8.5479],
+  {b:'balt', badge:'C', emoji:'🏞️', name:'Limmatplatz (by the Rathaus)', time:'4:30 PM · alt', ll:[47.3716,8.5429], q:'47.3716,8.5429',
+   desc:'A little riverside plaza right beside the Rathaus — a nice spot to pause on the water.',
+   addr:'Limmatquai, by the Rathaus, 8001 Zürich'},
+  {b:'balt', badge:'D', emoji:'🖼️', name:'Kunsthaus Zürich', time:'5 PM · alt', ll:[47.3703,8.5479],
    desc:'Major art museum — and it’s FREE on Wednesdays if you have the time.',
    addr:'Heimplatz 1, 8001 Zürich',
    tip:'Free entry on Wednesdays.'},
 
-  {b:'b17', badge:20, emoji:'🌷', name:'Rechberggarten', time:'~5 PM', ll:[47.3725,8.5468], photo:'rechberg',
+  {b:'b17', badge:22, emoji:'🌷', name:'Rechberggarten', time:'~5 PM', ll:[47.3725,8.5468], photo:'rechberg',
    desc:'A beautiful nearby garden full of flowers — a lovely, quiet stop.',
    addr:'Hirschengraben / Rämistrasse, 8001 Zürich'},
-  {b:'b17', badge:21, emoji:'⛪', name:'Grossmünster', time:'~5 PM', ll:[47.3701,8.5442], photo:'grossmunster',
+  {b:'b17', badge:23, emoji:'⛪', name:'Grossmünster', time:'~5 PM', ll:[47.3701,8.5442], photo:'grossmunster',
    desc:'See the iconic twin towers up close — Zurich’s landmark church.',
    addr:'Grossmünsterplatz, 8001 Zürich'},
-  {b:'b17', badge:22, emoji:'☕', name:'Café Schober / Conditorei', time:'Before 6 PM', ll:[47.3716,8.5443],
+  {b:'b17', badge:24, emoji:'☕', name:'Café Schober / Conditorei', time:'Before 6 PM', ll:[47.3716,8.5443],
    desc:'The oldest and most famous café in Zurich — grab a treat before it closes at 6 PM.',
    addr:'Napfgasse 4, 8001 Zürich',
    tip:'Closes at 6 PM — go here before dinner.'},
-  {b:'b17', badge:23, emoji:'📸', name:'Limmatquai Panorama', time:'5–6 PM', ll:[47.3711,8.5433], photo:'limmat',
+  {b:'b17', badge:25, emoji:'📸', name:'Limmatquai Panorama', time:'5–6 PM', ll:[47.3711,8.5433], photo:'limmat',
    desc:'Walk the riverfront square for the postcard panorama of old-town houses.',
    addr:'Limmatquai, 8001 Zürich'},
-  {b:'b17', badge:24, emoji:'🚶', name:'Niederdorfstrasse', time:'6–7 PM', ll:[47.3722,8.5443],
+  {b:'b17', badge:26, emoji:'🚶', name:'Niederdorfstrasse', time:'6–7 PM', ll:[47.3722,8.5443],
    desc:'Stroll this lively old-town lane while it’s still light. After dinner it leads you up and over the bridge to gelato.',
    addr:'Niederdorfstrasse, 8001 Zürich'},
 
@@ -277,11 +286,11 @@ const STOPS = [
 
 // Ordered walking route (spine), split into coloured legs w/ direction arrows.
 const LEGS = [
-  {b:'b12', path:[[47.3775,8.5404],[47.3786,8.5420],[47.3768,8.5432],[47.3765,8.5478],[47.3773,8.5450],[47.3777,8.5407],[47.3762,8.5379],[47.3745,8.5389],[47.3728,8.5388]]},
-  {b:'b13', path:[[47.3728,8.5389],[47.3731,8.5410],[47.3716,8.5409],[47.3702,8.5406],[47.3701,8.5397],[47.3698,8.5391],[47.3698,8.5405],[47.3698,8.5411],[47.3699,8.5423]]},
+  {b:'b12', path:[[47.3775,8.5404],[47.3763,8.5418],[47.3767,8.5432],[47.3765,8.5478],[47.3771,8.5448],[47.3760,8.5416],[47.3748,8.5397],[47.3743,8.5387],[47.3735,8.5388],[47.3728,8.5388]]},
+  {b:'b13', path:[[47.3728,8.5389],[47.3731,8.5411],[47.3727,8.5404],[47.3719,8.5402],[47.3702,8.5406],[47.3701,8.5397],[47.3698,8.5391],[47.3698,8.5405],[47.3698,8.5411],[47.3695,8.5414],[47.3699,8.5423]]},
   {b:'b15', path:[[47.3667,8.5407],[47.3663,8.5423],[47.3656,8.5445],[47.3660,8.5455],[47.3655,8.5464],[47.3661,8.5453],[47.3672,8.5447],[47.3690,8.5438],[47.3702,8.5432]]},
-  {b:'balt',path:[[47.3699,8.5423],[47.3714,8.5427],[47.3710,8.5455],[47.3703,8.5479]]},
-  {b:'b17', path:[[47.3702,8.5432],[47.3701,8.5442],[47.3712,8.5458],[47.3725,8.5468],[47.3718,8.5450],[47.3716,8.5443],[47.3722,8.5443],[47.3728,8.5437],[47.3736,8.5434],[47.3740,8.5424],[47.3742,8.5405],[47.3743,8.5386]]},
+  {b:'balt',path:[[47.3699,8.5423],[47.3714,8.5427],[47.3716,8.5429],[47.3710,8.5455],[47.3703,8.5479]]},
+  {b:'b17', path:[[47.3702,8.5432],[47.3701,8.5442],[47.3712,8.5458],[47.3725,8.5468],[47.3718,8.5450],[47.3716,8.5443],[47.3722,8.5443],[47.3728,8.5437],[47.3740,8.5433],[47.3752,8.5425],[47.3760,8.5416],[47.3750,8.5398],[47.3743,8.5387]]},
 ];
 
 /* ============================ MAP ============================ */
@@ -322,7 +331,7 @@ LEGS.forEach(leg=>{
 /* ---- markers ---- */
 const bounds = L.latLngBounds([]);
 const blockBounds = {};
-function gmaps(name){return 'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(name+', Zürich');}
+function gmaps(q){return 'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(q);}
 
 STOPS.forEach(s=>{
   const c = BLOCKS[s.b].color;
@@ -339,7 +348,7 @@ STOPS.forEach(s=>{
     `<div class="pp-name">${s.emoji} ${s.name}</div>`+
     `<p class="pp-desc">${s.desc}</p>`+
     `<div class="pp-addr">📍 ${s.addr}</div>${tip}`+
-    `<a class="pp-btn" target="_blank" href="${gmaps(s.name)}">Directions</a>`+
+    `<a class="pp-btn" target="_blank" href="${gmaps(s.q || s.name+', Zürich')}">Directions</a>`+
     `</div></div>`;
   L.marker(s.ll,{icon}).addTo(map).bindPopup(html,{maxWidth:252,closeButton:true,
     autoPanPaddingTopLeft:[14,168],autoPanPaddingBottomRight:[14,24]});
