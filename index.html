@@ -42,6 +42,10 @@
   .chip .dot{width:11px;height:11px;border-radius:50%;flex:0 0 auto}
   .chip small{color:var(--ink-mute);font-weight:500}
   .chip.all{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .chip.active{background:var(--ac);border-color:var(--ac);color:#fff}
+  .chip.active small{color:rgba(255,255,255,.82)}
+  .chip.active .dot{background:#fff}
+  .leaflet-marker-icon{transition:opacity .25s ease}
 
   /* ---------- Markers ---------- */
   .pin{width:34px;height:34px;border-radius:50%;background:#fff;border:3px solid var(--c);
@@ -316,15 +320,19 @@ function arrowIcon(deg,color){
 }
 
 const arrowLayer = L.layerGroup().addTo(map);
+const layersByBlock = {};                 // block key -> {markers, lines, arrows}
+function bucket(k){ return layersByBlock[k] || (layersByBlock[k]={markers:[],lines:[],arrows:[]}); }
 LEGS.forEach(leg=>{
   const c = BLOCKS[leg.b].color, dash = BLOCKS[leg.b].dash;
-  L.polyline(leg.path,{color:c,weight:5,opacity:.85,lineJoin:'round',
+  const line = L.polyline(leg.path,{color:c,weight:5,opacity:.85,lineJoin:'round',
     dashArray: dash? '3,10' : null}).addTo(map);
+  bucket(leg.b).lines.push(line);
   // arrow at the midpoint of each segment
   for(let i=0;i<leg.path.length-1;i++){
     const a=leg.path[i], b=leg.path[i+1];
     const mid=[(a[0]+b[0])/2,(a[1]+b[1])/2];
-    L.marker(mid,{icon:arrowIcon(bearing(a,b),c),interactive:false,keyboard:false}).addTo(arrowLayer);
+    const ar = L.marker(mid,{icon:arrowIcon(bearing(a,b),c),interactive:false,keyboard:false}).addTo(arrowLayer);
+    bucket(leg.b).arrows.push(ar);
   }
 });
 
@@ -350,25 +358,50 @@ STOPS.forEach(s=>{
     `<div class="pp-addr">📍 ${s.addr}</div>${tip}`+
     `<a class="pp-btn" target="_blank" href="${gmaps(s.q || s.name+', Zürich')}">Directions</a>`+
     `</div></div>`;
-  L.marker(s.ll,{icon}).addTo(map).bindPopup(html,{maxWidth:252,closeButton:true,
+  const mk = L.marker(s.ll,{icon}).addTo(map).bindPopup(html,{maxWidth:252,closeButton:true,
     autoPanPaddingTopLeft:[14,168],autoPanPaddingBottomRight:[14,24]});
+  mk.on('click', ()=>focusFromMarker(s.b));
+  bucket(s.b).markers.push(mk);
   bounds.extend(s.ll);
   (blockBounds[s.b] = blockBounds[s.b] || L.latLngBounds([])).extend(s.ll);
 });
 
 map.fitBounds(bounds,{paddingTopLeft:[20,150],paddingBottomRight:[20,40]});
 
-/* ============================ CHIPS ============================ */
+/* ============================ CHIPS & FOCUS ============================ */
 const chips = document.getElementById('chips');
-function addChip(label,inner,onClick,cls){
-  const el=document.createElement('button'); el.className='chip'+(cls?' '+cls:''); el.innerHTML=inner;
-  el.onclick=onClick; chips.appendChild(el);
+const chipEls = {};
+let activeBlock = null;
+
+function setBlockDim(k, full){                    // full=true → highlighted, false → dimmed
+  const g = layersByBlock[k]; if(!g) return;
+  g.markers.forEach(m=>m.setOpacity(full?1:0.2));
+  g.lines.forEach(l=>l.setStyle({opacity:full?0.85:0.12}));
+  g.arrows.forEach(a=>a.setOpacity(full?1:0.15));
 }
-addChip('all','🗺️ Full day', ()=>map.fitBounds(bounds,{paddingTopLeft:[20,150],paddingBottomRight:[20,40]}),'all');
+function applyFocus(){
+  Object.keys(layersByBlock).forEach(k=> setBlockDim(k, !activeBlock || k===activeBlock));
+  Object.keys(chipEls).forEach(k=> chipEls[k].classList.toggle('active', k===activeBlock));
+}
+function focusFromMarker(k){ activeBlock=k; applyFocus(); }   // clicking a pin highlights its block (view unchanged)
+function resetFocus(){ if(activeBlock){ activeBlock=null; applyFocus(); } }   // clicking empty map clears the highlight
+map.on('click', resetFocus);
+function focusBlock(k){
+  activeBlock = (activeBlock===k) ? null : k;     // click the active one again to reset
+  applyFocus();
+  if(activeBlock && blockBounds[k]) map.fitBounds(blockBounds[k],{paddingTopLeft:[30,160],paddingBottomRight:[30,50],maxZoom:16});
+  else map.fitBounds(bounds,{paddingTopLeft:[20,150],paddingBottomRight:[20,40]});
+}
+
+function addChip(inner,onClick,cls,key){
+  const el=document.createElement('button'); el.className='chip'+(cls?' '+cls:''); el.innerHTML=inner;
+  el.onclick=onClick; chips.appendChild(el); if(key) chipEls[key]=el; return el;
+}
+addChip('🗺️ Full day', ()=>{ activeBlock=null; applyFocus(); map.fitBounds(bounds,{paddingTopLeft:[20,150],paddingBottomRight:[20,40]}); },'all');
 Object.keys(BLOCKS).forEach(k=>{
   const B=BLOCKS[k];
-  addChip(k,`<span class="dot" style="background:${B.color}"></span>${B.time}&nbsp;<small>${B.label}</small>`,
-    ()=>{ if(blockBounds[k]) map.fitBounds(blockBounds[k],{paddingTopLeft:[30,160],paddingBottomRight:[30,50],maxZoom:16}); });
+  const el=addChip(`<span class="dot" style="background:${B.color}"></span>${B.time}&nbsp;<small>${B.label}</small>`, ()=>focusBlock(k), '', k);
+  el.style.setProperty('--ac', B.color);
 });
 
 /* ============================ INFO PANEL ============================ */
